@@ -1,7 +1,5 @@
 import gql from 'graphql-tag';
 
-//used to import this query function by name anywhere we need throughout frontend
-
 export const QUERY_THOUGHTS = gql`
   query thoughts($username: String) {
     thoughts(username: $username) {
@@ -58,6 +56,7 @@ export const QUERY_USER = gql`
     }
   }
 `;
+
 export const QUERY_ME = gql`
   {
     me {

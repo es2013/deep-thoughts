@@ -5,9 +5,9 @@ import ApolloClient from 'apollo-boost'; //to get that data whenwe're ready to u
 //browserrouter and route are components that react library provides
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-
 import Header from './components/Header';
 import Footer from './components/Footer';
+
 import Home from './pages/Home';
 import Login from './pages/Login';
 import NoMatch from './pages/NoMatch';
@@ -30,9 +30,7 @@ const client = new ApolloClient({
   uri: '/graphql'
 });
 
-// const client = new ApolloClient({
-//   uri: 'http://localhost:3002/graphql'
-// });
+
 function App() {
   return (
     <ApolloProvider client={client}>
@@ -40,14 +38,14 @@ function App() {
         <div className="flex-column justify-flex-start min-100-vh">
           <Header />
           <div className="container">
-            <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/signup" component={Signup} />
-            <Route exact path="/profile/:username?" component={Profile} />
-            <Route exact path="/thought/:id" component={SingleThought} />
-            <Route component={NoMatch} />
+          <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/signup" component={Signup} />
+              <Route exact path="/profile/:username?" component={Profile} />
+              <Route exact path="/thought/:id" component={SingleThought} />
 
+              <Route component={NoMatch} />
             </Switch>
           </div>
           <Footer />
