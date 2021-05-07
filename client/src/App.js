@@ -16,9 +16,20 @@ import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 
 //establish connection to GraphQL
+//this will retrieve the token before each request
 const client = new ApolloClient({
+  request: operation => {
+    const token = localStorage.getItem('id_token');
+//setcontext used to set HTTP deaders of every request to include bearer
+    operation.setContext({
+      headers: {
+        authorization: token ? `Bearer ${token}` : ''
+      }
+    });
+  },
   uri: '/graphql'
 });
+
 // const client = new ApolloClient({
 //   uri: 'http://localhost:3002/graphql'
 // });
@@ -33,8 +44,6 @@ function App() {
             <Route exact path="/" component={Home} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
-            {/* <Route exact path="/profile" component={Profile} />
-            <Route exact path="/thought" component={SingleThought} /> */}
             <Route exact path="/profile/:username?" component={Profile} />
             <Route exact path="/thought/:id" component={SingleThought} />
             <Route component={NoMatch} />
